@@ -44,34 +44,49 @@ export default function AdminPage() {
                 <th style={thStyle}>Name</th>
                 <th style={thStyle}>Email</th>
                 <th style={thStyle}>Dietary</th>
-                <th style={thStyle}>Plus One Name</th>
-                <th style={thStyle}>Plus One Email</th>
-                <th style={thStyle}>Plus One Dietary</th>
               </tr>
             </thead>
             <tbody>
               {allRsvps.map((rsvp: any) => (
-                <tr
-                  key={rsvp._id}
-                  style={{ borderBottom: `1px solid ${GOLD}` }}
-                >
-                  <td style={tdStyle}>{rsvp.name}</td>
-                  <td style={tdStyle}>{rsvp.email}</td>
-                  <td style={tdStyle}>
-                    {(rsvp.dietaryPreferences || []).join(", ")}
-                    {rsvp.otherDietaryPreference
-                      ? `, ${rsvp.otherDietaryPreference}`
-                      : ""}
-                  </td>
-                  <td style={tdStyle}>{rsvp.plusOneName || ""}</td>
-                  <td style={tdStyle}>{rsvp.plusOneEmail || ""}</td>
-                  <td style={tdStyle}>
-                    {(rsvp.plusOneDietaryPreferences || []).join(", ")}
-                    {rsvp.plusOneOtherDietaryPreference
-                      ? `, ${rsvp.plusOneOtherDietaryPreference}`
-                      : ""}
-                  </td>
-                </tr>
+                <>
+                  <tr
+                    key={rsvp._id}
+                    style={{ borderBottom: `1px solid ${GOLD}` }}
+                  >
+                    <td style={tdStyle}>{rsvp.name}</td>
+                    <td style={tdStyle}>{rsvp.email}</td>
+                    <td style={tdStyle}>
+                      {(rsvp.dietaryPreferences || []).join(", ")}
+                      {rsvp.otherDietaryPreference
+                        ? `, ${rsvp.otherDietaryPreference}`
+                        : ""}
+                    </td>
+                  </tr>
+                  {rsvp.hasPlusOne && (
+                    <tr
+                      key={`${rsvp._id}-plus-one`}
+                      style={{
+                        borderBottom: `1px solid ${GOLD}`,
+                        background: OFFWHITE,
+                        opacity: 0.8,
+                      }}
+                    >
+                      <td style={tdStyle}>
+                        <span style={{ color: GOLD, fontWeight: 600 }}>
+                          +1:{" "}
+                        </span>
+                        {rsvp.plusOneName}
+                      </td>
+                      <td style={tdStyle}>{rsvp.plusOneEmail}</td>
+                      <td style={tdStyle}>
+                        {(rsvp.plusOneDietaryPreferences || []).join(", ")}
+                        {rsvp.plusOneOtherDietaryPreference
+                          ? `, ${rsvp.plusOneOtherDietaryPreference}`
+                          : ""}
+                      </td>
+                    </tr>
+                  )}
+                </>
               ))}
             </tbody>
           </table>

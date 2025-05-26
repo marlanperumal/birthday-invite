@@ -618,7 +618,14 @@ function DietaryPreferencesSection({
       >
         {title}
       </p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 0,
+          justifyContent: "center",
+        }}
+      >
         {dietaryOptions.map((opt) => (
           <DietaryChip
             key={opt.id}
