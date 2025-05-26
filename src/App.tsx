@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminPage from "./AdminPage";
-import ProtectedRoute from "./ProtectedRoute";
 
 const GOLD = "#c9b037";
 const OFFWHITE = "#f8f6f2";
