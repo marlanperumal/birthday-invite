@@ -81,3 +81,10 @@ export const getMyRsvp = query({
       .unique();
   },
 });
+
+export const listAll = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("rsvps").collect();
+  },
+});
