@@ -190,7 +190,7 @@ function InviteContent({ loggedInUser }: { loggedInUser: any }) {
               Thanks for RSVPing, {myRsvp.name}!
             </h3>
             <p style={{ color: GOLD, fontSize: 15 }}>
-              We've got your details. You can update your RSVP below if needed.
+              We've got your details. You can update your RSVP above if needed.
             </p>
           </div>
         )}
