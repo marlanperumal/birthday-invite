@@ -6,8 +6,7 @@ import { api } from "../convex/_generated/api";
 import { toast } from "sonner";
 import { useState, useEffect } from "react";
 import { Doc } from "../convex/_generated/dataModel";
-import { Check, UserPlus } from "lucide-react";
-import { cn } from "./lib/utils";
+import { UserPlus } from "lucide-react";
 
 const GOLD = "#c9b037";
 const OFFWHITE = "#f8f6f2";
@@ -240,7 +239,10 @@ export default function RsvpForm({ userEmail, currentRsvp }: RsvpFormProps) {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={(e) => {
+        e.preventDefault();
+        void handleSubmit(onSubmit)(e);
+      }}
       style={{
         fontFamily: 'Georgia, Times, "Times New Roman", serif',
         background: OFFWHITE,
