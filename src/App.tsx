@@ -8,6 +8,7 @@ import { useAuthActions } from "@convex-dev/auth/react";
 const GOLD = "#c9b037";
 const OFFWHITE = "#f8f6f2";
 const ADMIN_PASSWORD = "letmein"; // Change this to something secure in production
+const MAPS_URL = "https://maps.app.goo.gl/Ws2JT6yEpx3bXp1Q8";
 
 export default function App() {
   const { signIn } = useAuthActions();
@@ -138,10 +139,38 @@ function InviteContent({ loggedInUser }: { loggedInUser: any }) {
         <span style={{ fontWeight: 600 }}>FRIDAY, 18 JULY 2025</span>
       </div>
       <div
-        className="mb-1"
+        className="mb-1 flex items-center justify-center gap-2"
         style={{ fontSize: 17, letterSpacing: 1, color: "#222" }}
       >
-        THE TERRACE ROOFTOP VENUE
+        <a
+          href={MAPS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            marginRight: 6,
+          }}
+          aria-label="View venue on map"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ marginRight: 4, verticalAlign: "middle" }}
+          >
+            <path
+              d="M10 2C6.686 2 4 4.686 4 8c0 4.418 5.25 9.25 5.477 9.463a1 1 0 0 0 1.046 0C10.75 17.25 16 12.418 16 8c0-3.314-2.686-6-6-6zm0 14.243C8.14 14.01 6 10.97 6 8a4 4 0 1 1 8 0c0 2.97-2.14 6.01-4 8.243z"
+              fill={GOLD}
+            />
+            <circle cx="10" cy="8" r="2" fill={GOLD} />
+          </svg>
+        </a>
+        <span style={{ verticalAlign: "middle" }}>
+          THE TERRACE ROOFTOP VENUE
+        </span>
       </div>
       <div
         className="mb-1"
