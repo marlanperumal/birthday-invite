@@ -179,13 +179,51 @@ export default function RsvpForm({ userEmail, currentRsvp }: RsvpFormProps) {
       };
       await submitRsvp(payload);
       toast.success(
-        currentRsvp
-          ? "RSVP updated successfully!"
-          : "RSVP submitted successfully! We can't wait to celebrate with you!"
+        <span
+          style={{
+            color: GOLD,
+            fontFamily: "Georgia, serif",
+            fontWeight: 700,
+            fontSize: 18,
+          }}
+        >
+          {currentRsvp
+            ? "RSVP updated successfully!"
+            : "RSVP submitted successfully! We can't wait to celebrate with you!"}
+        </span>,
+        {
+          style: {
+            background: OFFWHITE,
+            border: `1.5px solid ${GOLD}`,
+            color: GOLD,
+            fontFamily: "Georgia, serif",
+            fontSize: 16,
+          },
+        }
       );
     } catch (error) {
       console.error("RSVP submission error:", error);
-      toast.error("Failed to submit RSVP. Please try again.");
+      toast.error(
+        <span
+          style={{
+            color: "#b91c1c",
+            fontFamily: "Georgia, serif",
+            fontWeight: 700,
+            fontSize: 18,
+          }}
+        >
+          Failed to submit RSVP. Please try again.
+        </span>,
+        {
+          style: {
+            background: OFFWHITE,
+            border: `1.5px solid #b91c1c`,
+            color: "#b91c1c",
+            fontFamily: "Georgia, serif",
+            fontSize: 16,
+          },
+        }
+      );
     }
   };
 
@@ -229,7 +267,7 @@ export default function RsvpForm({ userEmail, currentRsvp }: RsvpFormProps) {
             fontFamily: "Georgia, serif",
           }}
         >
-          RSVP
+          RSVP by 9 June 2025
         </h3>
         <p
           style={{

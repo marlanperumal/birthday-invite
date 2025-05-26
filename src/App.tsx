@@ -184,12 +184,6 @@ function InviteContent({ loggedInUser }: { loggedInUser: any }) {
       </div>
 
       {/* RSVP */}
-      <div
-        className="mb-1"
-        style={{ fontSize: 16, fontWeight: 600, color: "#222" }}
-      >
-        RSVP BY 9 JUNE 2025
-      </div>
 
       {/* RSVP Status and Form */}
       <div className="mt-6 w-full max-w-md mx-auto">
@@ -197,11 +191,30 @@ function InviteContent({ loggedInUser }: { loggedInUser: any }) {
           <div className="text-center">Loading RSVP status...</div>
         )}
         {myRsvp && (
-          <div className="text-center p-4 bg-green-100 border border-green-300 rounded-lg mb-4">
-            <h3 className="text-xl font-semibold text-green-700">
+          <div
+            className="text-center mb-4"
+            style={{
+              background: OFFWHITE,
+              border: `1.5px solid ${GOLD}`,
+              borderRadius: 0,
+              padding: 20,
+              fontFamily: "Georgia, serif",
+            }}
+          >
+            <h3
+              style={{
+                fontSize: 20,
+                fontWeight: 700,
+                color: GOLD,
+                textTransform: "uppercase",
+                letterSpacing: 1,
+                marginBottom: 8,
+                fontFamily: "Georgia, serif",
+              }}
+            >
               Thanks for RSVPing, {myRsvp.name}!
             </h3>
-            <p className="text-green-600">
+            <p style={{ color: GOLD, fontSize: 15 }}>
               We've got your details. You can update your RSVP below if needed.
             </p>
           </div>
