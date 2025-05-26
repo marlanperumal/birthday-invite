@@ -187,6 +187,7 @@ function InviteContent({ loggedInUser }: { loggedInUser: any }) {
 
       {/* RSVP Status and Form */}
       <div className="mt-6 w-full max-w-md mx-auto">
+        <RsvpForm userEmail={loggedInUser?.email ?? ""} currentRsvp={myRsvp} />
         {myRsvp === undefined && (
           <div className="text-center">Loading RSVP status...</div>
         )}
@@ -219,7 +220,6 @@ function InviteContent({ loggedInUser }: { loggedInUser: any }) {
             </p>
           </div>
         )}
-        <RsvpForm userEmail={loggedInUser?.email ?? ""} currentRsvp={myRsvp} />
       </div>
     </div>
   );
