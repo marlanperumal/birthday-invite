@@ -42,8 +42,8 @@ export default function AdminPage() {
             <thead>
               <tr style={{ background: OFFWHITE }}>
                 <th style={thStyle}>Name</th>
-                <th style={thStyle}>Email</th>
                 <th style={thStyle}>Dietary</th>
+                <th style={thStyle}>Email</th>
               </tr>
             </thead>
             <tbody>
@@ -54,13 +54,13 @@ export default function AdminPage() {
                     style={{ borderBottom: `1px solid ${GOLD}` }}
                   >
                     <td style={tdStyle}>{rsvp.name}</td>
-                    <td style={tdStyle}>{rsvp.email}</td>
                     <td style={tdStyle}>
                       {(rsvp.dietaryPreferences || []).join(", ")}
                       {rsvp.otherDietaryPreference
                         ? `, ${rsvp.otherDietaryPreference}`
                         : ""}
                     </td>
+                    <td style={tdStyle}>{rsvp.email}</td>
                   </tr>
                   {rsvp.hasPlusOne && (
                     <tr
@@ -77,13 +77,13 @@ export default function AdminPage() {
                         </span>
                         {rsvp.plusOneName}
                       </td>
-                      <td style={tdStyle}>{rsvp.plusOneEmail}</td>
                       <td style={tdStyle}>
                         {(rsvp.plusOneDietaryPreferences || []).join(", ")}
                         {rsvp.plusOneOtherDietaryPreference
                           ? `, ${rsvp.plusOneOtherDietaryPreference}`
                           : ""}
                       </td>
+                      <td style={tdStyle}>{rsvp.plusOneEmail}</td>
                     </tr>
                   )}
                 </>
