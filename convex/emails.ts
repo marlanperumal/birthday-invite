@@ -30,8 +30,9 @@ export const sendEmail = mutation({
 
         try {
             const response = await resend.emails.send({
-                from: "Marlan's 40th Birthday <birthday@invite.perumal.co.za>",
+                from: "Marlan's 40th Birthday <birthday@stuntedchicken.co.za>",
                 to: recipients,
+                replyTo: "marlan.perumal@gmail.com",
                 subject: args.subject,
                 html: args.body,
             });
