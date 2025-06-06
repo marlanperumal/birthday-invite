@@ -1,12 +1,63 @@
 import { mutation, query, action } from "./_generated/server";
 import { v } from "convex/values";
-import { internal } from "./_generated/api";
 import { Resend } from "resend";
+import { api } from "./_generated/api";
 
 type EmailResult = {
     success: boolean;
     recipients: number;
 };
+
+// This action handles the actual email sending
+export const sendEmailAction = action({
+    args: {
+        recipients: v.array(v.string()),
+        subject: v.string(),
+        body: v.string(),
+    },
+    handler: async (ctx, args) => {
+        const resendApiKey = process.env.RESEND_API_KEY;
+        console.log("RESEND_API_KEY", resendApiKey);
+        if (!resendApiKey) {
+            throw new Error("RESEND_API_KEY environment variable is not set");
+        }
+
+
+        try {
+            console.log("Attempting to send email to", args.recipients);
+            const res = await fetch('https://api.resend.com/emails', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${resendApiKey}`,
+                },
+                body: JSON.stringify({
+                    from: "Marlan's 40th Birthday <birthday@stuntedchicken.co.za>",
+                    to: args.recipients,
+                    reply_to: "marlan.perumal@gmail.com",
+                    subject: args.subject,
+                    html: args.body,
+                }),
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                console.log("Email sent successfully:", data);
+                return data;
+            } else {
+                console.error("Email sending error:", res);
+                throw new Error(`Failed to send email: ${res.statusText || 'Unknown error'}`);
+            }
+
+        } catch (error: any) {
+            console.error("Email sending error:", error);
+            if (error.response?.data) {
+                console.error("Resend API detailed error:", error.response.data);
+            }
+            throw new Error(`Failed to send email: ${error?.message || 'Unknown error'}`);
+        }
+    },
+});
 
 // This mutation will be called by the frontend and delegates to the action
 export const sendEmail = mutation({
@@ -38,7 +89,7 @@ export const sendEmail = mutation({
         }
 
         // Schedule the action and return immediately
-        await ctx.scheduler.runAfter(0, internal.emails.sendEmailAction, {
+        await ctx.scheduler.runAfter(0, api.emails.sendEmailAction, {
             recipients,
             subject: args.subject,
             body: args.body,
@@ -49,53 +100,5 @@ export const sendEmail = mutation({
             success: true,
             recipients: recipients.length
         };
-    },
-});
-
-// This action handles the actual email sending
-export const sendEmailAction = action({
-    args: {
-        recipients: v.array(v.string()),
-        subject: v.string(),
-        body: v.string(),
-    },
-    handler: async (ctx, args) => {
-        const resendApiKey = process.env.RESEND_API_KEY;
-        if (!resendApiKey) {
-            throw new Error("RESEND_API_KEY environment variable is not set");
-        }
-
-        const resend = new Resend(resendApiKey);
-
-        try {
-            console.log("Attempting to send email to", args.recipients);
-
-            const { data, error } = await resend.emails.send({
-                from: "Marlan's 40th Birthday <birthday@stuntedchicken.co.za>",
-                to: args.recipients,
-                replyTo: "marlan.perumal@gmail.com",
-                subject: args.subject,
-                html: args.body,
-            });
-
-            console.log("Resend API response:", { data, error });
-
-            if (error) {
-                console.error("Resend API error:", error);
-                throw new Error(`Failed to send email: ${error.message || 'Unknown error'}`);
-            }
-
-            console.log("Email sent successfully:", data);
-            return {
-                success: true,
-                recipients: args.recipients.length
-            };
-        } catch (error: any) {
-            console.error("Email sending error:", error);
-            if (error.response?.data) {
-                console.error("Resend API detailed error:", error.response.data);
-            }
-            throw new Error(`Failed to send email: ${error?.message || 'Unknown error'}`);
-        }
     },
 }); 
