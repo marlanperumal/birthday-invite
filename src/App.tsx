@@ -114,7 +114,7 @@ function InviteContent({ loggedInUser }: { loggedInUser: any }) {
         className="mb-1"
         style={{ fontSize: 17, letterSpacing: 1, color: "#222" }}
       >
-        <span style={{ fontWeight: 600 }}>FRIDAY, 18 JULY 2025</span>
+        <span style={{ fontWeight: 600 }}>FRIDAY, 18 JULY 2025, 7pm</span>
       </div>
       <div
         className="mb-1 flex items-center justify-center gap-2"
