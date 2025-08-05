@@ -16,6 +16,14 @@ The backend code is in the `convex` directory.
 
 Chef apps use [Convex Auth](https://auth.convex.dev/) with Anonymous auth for easy sign in. You may wish to change this before deploying your app.
 
+## Admin Authentication
+
+The app includes admin authentication to protect the `/admin` and `/email` pages. To set up admin access:
+
+1. Create a `.env` file in the root directory
+2. Add the `ADMIN_PASSWORD` environment variable to Convex
+3. Users can sign up with an email and personal password if they also have the correct admin password
+
 ## Developing and deploying your app
 
 Check out the [Convex docs](https://docs.convex.dev/) for more information on how to develop with Convex.

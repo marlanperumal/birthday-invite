@@ -1,27 +1,54 @@
 import { useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
+import { useAuthActions } from "@convex-dev/auth/react";
+import { useNavigate } from "react-router-dom";
 
 const GOLD = "#c9b037";
 const OFFWHITE = "#f8f6f2";
 
 export default function AdminPage() {
   const allRsvps = useQuery(api.rsvps.listAll);
+  const { signOut } = useAuthActions();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   return (
     <div style={{ width: "100%", maxWidth: 700, fontFamily: "Georgia, serif" }}>
-      <h2
-        style={{
-          fontSize: 26,
-          fontWeight: 700,
-          color: "#222",
-          textTransform: "uppercase",
-          letterSpacing: 2,
-          marginBottom: 24,
-          textAlign: "center",
-        }}
-      >
-        RSVP Responses
-      </h2>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+        <h2
+          style={{
+            fontSize: 26,
+            fontWeight: 700,
+            color: "#222",
+            textTransform: "uppercase",
+            letterSpacing: 2,
+            margin: 0,
+          }}
+        >
+          RSVP Responses
+        </h2>
+        <button
+          onClick={handleSignOut}
+          style={{
+            padding: "8px 16px",
+            border: `1px solid ${GOLD}`,
+            background: "white",
+            color: GOLD,
+            fontFamily: "Georgia, serif",
+            fontSize: 14,
+            fontWeight: 600,
+            textTransform: "uppercase",
+            letterSpacing: 1,
+            cursor: "pointer",
+          }}
+        >
+          Sign Out
+        </button>
+      </div>
       {!allRsvps ? (
         <div
           style={{ textAlign: "center", color: "#888", fontStyle: "italic" }}

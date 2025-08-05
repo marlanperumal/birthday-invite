@@ -7,6 +7,8 @@ import { useAuthActions } from "@convex-dev/auth/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminPage from "./AdminPage";
 import EmailPage from "./EmailPage";
+import ProtectedRoute from "./ProtectedRoute";
+import AdminLoginPage from "./AdminLoginPage";
 
 const GOLD = "#c9b037";
 const OFFWHITE = "#f8f6f2";
@@ -76,8 +78,23 @@ export default function App() {
                 path="/"
                 element={<InviteContent loggedInUser={loggedInUser} />}
               />
-              <Route path="/admin" element={<AdminPage />} />
-              <Route path="/email" element={<EmailPage />} />
+              <Route path="/admin-login" element={<AdminLoginPage />} />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute>
+                    <AdminPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/email"
+                element={
+                  <ProtectedRoute>
+                    <EmailPage />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </div>
         </div>

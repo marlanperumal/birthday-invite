@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { toast } from "sonner";
+import { useAuthActions } from "@convex-dev/auth/react";
+import { useNavigate } from "react-router-dom";
 
 const GOLD = "#c9b037";
 const OFFWHITE = "#f8f6f2";
@@ -12,6 +14,13 @@ export default function EmailPage() {
     const [testEmail, setTestEmail] = useState("");
     const [isSending, setIsSending] = useState(false);
     const sendEmail = useMutation(api.emails.sendEmail);
+    const { signOut } = useAuthActions();
+    const navigate = useNavigate();
+
+    const handleSignOut = async () => {
+        await signOut();
+        navigate("/");
+    };
 
     const handleSend = async (isTest: boolean) => {
         if (!subject || !body) {
@@ -68,19 +77,37 @@ export default function EmailPage() {
 
     return (
         <div style={{ width: "100%", maxWidth: 700, margin: "0 auto", padding: 20, fontFamily: "Georgia, serif" }}>
-            <h2
-                style={{
-                    fontSize: 26,
-                    fontWeight: 700,
-                    color: "#222",
-                    textTransform: "uppercase",
-                    letterSpacing: 2,
-                    marginBottom: 24,
-                    textAlign: "center",
-                }}
-            >
-                Send Email to Guests
-            </h2>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+                <h2
+                    style={{
+                        fontSize: 26,
+                        fontWeight: 700,
+                        color: "#222",
+                        textTransform: "uppercase",
+                        letterSpacing: 2,
+                        margin: 0,
+                    }}
+                >
+                    Send Email to Guests
+                </h2>
+                <button
+                    onClick={handleSignOut}
+                    style={{
+                        padding: "8px 16px",
+                        border: `1px solid ${GOLD}`,
+                        background: "white",
+                        color: GOLD,
+                        fontFamily: "Georgia, serif",
+                        fontSize: 14,
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: 1,
+                        cursor: "pointer",
+                    }}
+                >
+                    Sign Out
+                </button>
+            </div>
 
             <div style={{ background: OFFWHITE, border: `1px solid ${GOLD}`, padding: 32, marginBottom: 32 }}>
                 <div style={{ marginBottom: 20 }}>

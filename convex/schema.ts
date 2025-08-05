@@ -15,6 +15,12 @@ const applicationTables = {
     plusOneOtherDietaryPreference: v.optional(v.string()),
     userId: v.id("users"),
   }).index("by_userId", ["userId"]),
+  
+  // Custom users table to extend auth users with admin functionality
+  userProfiles: defineTable({
+    userId: v.id("users"),
+    admin: v.boolean(),
+  }).index("by_userId", ["userId"]),
 };
 
 export default defineSchema({
