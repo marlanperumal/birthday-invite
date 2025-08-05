@@ -29,12 +29,40 @@ export default function App() {
         className="min-h-screen flex items-center justify-center"
         style={{ background: OFFWHITE }}
       >
+        {/* Party Completion Banner */}
+        <div
+          className="fixed top-0 left-0 right-0 z-50"
+          style={{
+            background: GOLD,
+            borderBottom: `2px solid ${GOLD}`,
+            padding: "16px 20px",
+            textAlign: "center",
+            fontFamily: 'Georgia, Times, "Times New Roman", serif',
+            boxShadow: "0 2px 8px rgba(201, 176, 55, 0.3)",
+          }}
+        >
+          <div
+            style={{
+              fontSize: 16,
+              fontWeight: 600,
+              color: "#222",
+              letterSpacing: 0.5,
+              lineHeight: 1.4,
+              maxWidth: "800px",
+              margin: "0 auto",
+            }}
+          >
+            The party is over! Thanks so much to all of you who came, and to those of you who couldn't, you were missed. Let's do this again in 10 years time! 🥳
+          </div>
+        </div>
+
         <div
           className="relative max-w-xl w-full mx-auto bg-white rounded-none"
           style={{
             border: `1.5px solid ${GOLD}`,
             boxShadow: "none",
             padding: 0,
+            marginTop: "100px", // Add margin to account for the banner
           }}
         >
           {/* Inner gold border for double border effect */}

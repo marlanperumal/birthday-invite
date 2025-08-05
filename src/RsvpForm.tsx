@@ -303,15 +303,17 @@ export default function RsvpForm({ userEmail, currentRsvp }: RsvpFormProps) {
           <input
             id="name"
             {...register("name")}
+            disabled={true}
             style={{
               width: "100%",
               padding: 8,
               border: `1px solid ${GOLD}`,
               fontFamily: "Georgia, serif",
               fontSize: 15,
-              background: "#fff",
-              color: "#222",
+              background: "#f5f5f5",
+              color: "#888",
               marginBottom: 4,
+              cursor: "not-allowed",
             }}
           />
           {errors.name && (
@@ -339,15 +341,17 @@ export default function RsvpForm({ userEmail, currentRsvp }: RsvpFormProps) {
             id="email"
             type="email"
             {...register("email")}
+            disabled={true}
             style={{
               width: "100%",
               padding: 8,
               border: `1px solid ${GOLD}`,
               fontFamily: "Georgia, serif",
               fontSize: 15,
-              background: "#fff",
-              color: "#222",
+              background: "#f5f5f5",
+              color: "#888",
               marginBottom: 4,
+              cursor: "not-allowed",
             }}
           />
           {errors.email && (
@@ -390,11 +394,14 @@ export default function RsvpForm({ userEmail, currentRsvp }: RsvpFormProps) {
                 type="checkbox"
                 checked={field.value}
                 onChange={() => field.onChange(!field.value)}
+                disabled={true}
                 style={{
                   accentColor: GOLD,
                   width: 18,
                   height: 18,
                   marginRight: 8,
+                  cursor: "not-allowed",
+                  opacity: 0.5,
                 }}
               />
             )}
@@ -448,15 +455,17 @@ export default function RsvpForm({ userEmail, currentRsvp }: RsvpFormProps) {
               <input
                 id="plusOneName"
                 {...register("plusOneName")}
+                disabled={true}
                 style={{
                   width: "100%",
                   padding: 8,
                   border: `1px solid ${GOLD}`,
                   fontFamily: "Georgia, serif",
                   fontSize: 15,
-                  background: "#fff",
-                  color: "#222",
+                  background: "#f5f5f5",
+                  color: "#888",
                   marginBottom: 4,
+                  cursor: "not-allowed",
                 }}
               />
               {errors.plusOneName && (
@@ -484,15 +493,17 @@ export default function RsvpForm({ userEmail, currentRsvp }: RsvpFormProps) {
                 id="plusOneEmail"
                 type="email"
                 {...register("plusOneEmail")}
+                disabled={true}
                 style={{
                   width: "100%",
                   padding: 8,
                   border: `1px solid ${GOLD}`,
                   fontFamily: "Georgia, serif",
                   fontSize: 15,
-                  background: "#fff",
-                  color: "#222",
+                  background: "#f5f5f5",
+                  color: "#888",
                   marginBottom: 4,
+                  cursor: "not-allowed",
                 }}
               />
               {errors.plusOneEmail && (
@@ -524,30 +535,26 @@ export default function RsvpForm({ userEmail, currentRsvp }: RsvpFormProps) {
       )}
       <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={true}
         style={{
           width: "100%",
           padding: "12px 0",
           border: `1.5px solid ${GOLD}`,
-          background: "#fff",
-          color: GOLD,
+          background: "#f5f5f5",
+          color: "#888",
           fontFamily: "Georgia, serif",
           fontSize: 18,
           fontWeight: 700,
           textTransform: "uppercase",
           letterSpacing: 2,
-          cursor: isSubmitting ? "not-allowed" : "pointer",
-          opacity: isSubmitting ? 0.7 : 1,
+          cursor: "not-allowed",
+          opacity: 0.7,
           marginTop: 24,
         }}
       >
-        {isSubmitting ? (
-          <span style={{ fontStyle: "italic", color: "#aaa" }}>
-            Submitting...
-          </span>
-        ) : (
-          <span>{currentRsvp ? "Update RSVP" : "Submit RSVP"}</span>
-        )}
+        <span style={{ fontStyle: "italic", color: "#aaa" }}>
+          RSVP Form Disabled
+        </span>
       </button>
     </form>
   );
@@ -575,20 +582,22 @@ function DietaryChip({
     <button
       type="button"
       onClick={onClick}
+      disabled={true}
       style={{
         padding: "6px 18px",
         fontSize: 14,
         border: `1px solid ${GOLD}`,
         borderRadius: 0,
-        background: selected ? GOLD : "#fff",
-        color: selected ? "#fff" : "#444",
+        background: "#f5f5f5",
+        color: "#888",
         fontFamily: "Georgia, serif",
         marginRight: 8,
         marginBottom: 8,
-        cursor: "pointer",
+        cursor: "not-allowed",
         textTransform: "capitalize",
-        fontWeight: selected ? 700 : 400,
+        fontWeight: 400,
         letterSpacing: 1,
+        opacity: 0.7,
       }}
     >
       {label}
@@ -657,14 +666,16 @@ function DietaryPreferencesSection({
           <input
             id={otherInputProps.name}
             {...otherInputProps}
+            disabled={true}
             style={{
               width: "100%",
               padding: 8,
               border: `1px solid ${GOLD}`,
               fontFamily: "Georgia, serif",
               fontSize: 15,
-              background: "#fff",
-              color: "#222",
+              background: "#f5f5f5",
+              color: "#888",
+              cursor: "not-allowed",
             }}
             placeholder="e.g., Nuts, Soy"
           />

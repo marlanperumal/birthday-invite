@@ -102,13 +102,16 @@ export default function EmailPage() {
                         id="subject"
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
+                        disabled={true}
                         style={{
                             width: "100%",
                             padding: 12,
                             border: `1px solid ${GOLD}`,
                             fontFamily: "Georgia, serif",
                             fontSize: 15,
-                            background: "#fff",
+                            background: "#f5f5f5",
+                            color: "#888",
+                            cursor: "not-allowed",
                         }}
                     />
                 </div>
@@ -133,14 +136,17 @@ export default function EmailPage() {
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
                         rows={10}
+                        disabled={true}
                         style={{
                             width: "100%",
                             padding: 12,
                             border: `1px solid ${GOLD}`,
                             fontFamily: "Georgia, serif",
                             fontSize: 15,
-                            background: "#fff",
+                            background: "#f5f5f5",
+                            color: "#888",
                             resize: "vertical",
+                            cursor: "not-allowed",
                         }}
                     />
                 </div>
@@ -165,58 +171,61 @@ export default function EmailPage() {
                         type="email"
                         value={testEmail}
                         onChange={(e) => setTestEmail(e.target.value)}
+                        disabled={true}
                         style={{
                             width: "100%",
                             padding: 12,
                             border: `1px solid ${GOLD}`,
                             fontFamily: "Georgia, serif",
                             fontSize: 15,
-                            background: "#fff",
+                            background: "#f5f5f5",
+                            color: "#888",
                             marginBottom: 12,
+                            cursor: "not-allowed",
                         }}
                     />
                     <button
                         onClick={() => handleSend(true)}
-                        disabled={isSending}
+                        disabled={true}
                         style={{
                             width: "100%",
                             padding: "12px 0",
                             border: `1.5px solid ${GOLD}`,
-                            background: "#fff",
-                            color: GOLD,
+                            background: "#f5f5f5",
+                            color: "#888",
                             fontFamily: "Georgia, serif",
                             fontSize: 16,
                             fontWeight: 700,
                             textTransform: "uppercase",
                             letterSpacing: 1,
-                            cursor: isSending ? "not-allowed" : "pointer",
-                            opacity: isSending ? 0.7 : 1,
+                            cursor: "not-allowed",
+                            opacity: 0.7,
                             marginBottom: 20,
                         }}
                     >
-                        {isSending ? "Sending..." : "Send Test Email"}
+                        Email Form Disabled
                     </button>
                 </div>
 
                 <button
                     onClick={() => handleSend(false)}
-                    disabled={isSending}
+                    disabled={true}
                     style={{
                         width: "100%",
                         padding: "12px 0",
                         border: `1.5px solid ${GOLD}`,
-                        background: GOLD,
-                        color: "#fff",
+                        background: "#f5f5f5",
+                        color: "#888",
                         fontFamily: "Georgia, serif",
                         fontSize: 18,
                         fontWeight: 700,
                         textTransform: "uppercase",
                         letterSpacing: 2,
-                        cursor: isSending ? "not-allowed" : "pointer",
-                        opacity: isSending ? 0.7 : 1,
+                        cursor: "not-allowed",
+                        opacity: 0.7,
                     }}
                 >
-                    {isSending ? "Sending..." : "Send to All Guests"}
+                    Email Form Disabled
                 </button>
             </div>
         </div>
